@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
+}
+
+plugins {
+	id 'java'
+	id 'jacoco'
+	id 'groovy'	
+    id 'eclipse'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.exchange'   
+version =  '0.0.1-SNAPSHOT'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	jcenter()
+    mavenCentral()
+    maven {
+    	url "https://plugins.gradle.org/m2/"
+    }
+}
+    
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compileOnly 'org.codehaus.groovy:groovy-all:2.4.15'    
+    compileOnly 'org.springframework.boot:spring-boot-starter-cache'
+    compileOnly 'org.slf4j:slf4j-api:1.7.25'
+    compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'    
+    implementation 'com.jayway.jsonpath:json-path'
+    implementation "org.spockframework:spock-core:1.1-groovy-2.4"
+    implementation "org.spockframework:spock-spring:1.1-groovy-2.4"        
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'	
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
