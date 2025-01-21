@@ -22,7 +22,9 @@ version =  '0.0.1-SNAPSHOT'
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
-	}
+		all*.exclude module : 'spring-boot-starter-logging'
+		all*.exclude module : 'logback-classic'
+	}	
 }
 
 repositories {
@@ -37,7 +39,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-	compileOnly 'org.codehaus.groovy:groovy-all:2.4.15'    
+	compileOnly 'org.codehaus.groovy:groovy-all:2.4.9'    
     compileOnly 'org.springframework.boot:spring-boot-starter-cache'
     compileOnly 'org.slf4j:slf4j-api:1.7.25'
     compileOnly 'org.slf4j:slf4j-simple:1.7.25'       
