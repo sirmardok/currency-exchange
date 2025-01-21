@@ -11,20 +11,41 @@ import lombok.RequiredArgsConstructor;
 
 import static java.math.BigDecimal.ONE;
 
+/**
+ * 
+ * @autor Miguel Garces
+ * @version 1.0
+ *  
+ */
+
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class ConvertionService {
-	
+	/**
+	 * --- Ejemplo de documentación ---
+	 * Servicio que realiza las dos operaciones detalladas en el controlador
+	 */
 	@Autowired
 	ExchangeApiService exchangeApiService;
 
     @Autowired
     ProcessConvertionService processConvertionService;
-
+    
+    /**
+     * 
+     * @param base
+     * @return ConvertionRates
+     * 
+     */
     public ConvertionRates latest(String base) {
         return exchangeApiService.getLatest(base);
     }    
    
+    /**
+     * 
+     * @param convertionParameters
+     * @return Convertion
+     */
     public Convertion process(ConvertionParameters convertionParameters) {
 
         if (convertionParameters.equalCurrency()) {
@@ -35,6 +56,12 @@ public class ConvertionService {
         		exchangeApiService.getLatest(convertionParameters.getFrom()),
             convertionParameters);
     }   
+    
+    /**
+     * 
+     * @param convertionParameters
+     * @return Convertion
+     */
 
     private Convertion getCurrencyConvertion(ConvertionParameters convertionParameters) {
         return Convertion.builder()

@@ -20,13 +20,26 @@ import com.exchange.currency_exchange.service.ConvertionService;
 
 import lombok.AllArgsConstructor;
 
-
+/**
+ * 
+ * @autor Miguel Garces
+ * @version 1.0
+ *  
+ */
 
 
 @RestController
 @Validated
 @AllArgsConstructor
 public class ConvertionController {
+	
+	/**
+	 * --- Ejemplo de documentación ---
+	 * 
+	 * Controlador principal contiene dos endpoints:
+	 * 		l. /latest: Devuelve el listado total de monedas con su correspondiente valor a EUR
+	 * 		2. /convert: Endpoint GET que recibe 3 parámetros y devuelve un json con la conversión de moneda 
+	 */
 	
 	private final String validationMsg = "El tipo de moneda debe ser de tres(3) caracteres";
 	private ConvertionService convertionService;
@@ -57,5 +70,11 @@ public class ConvertionController {
                               .to(toCurrency)
                               .build()));
 	    }
+    
+    @RequestMapping("/health")
+    @GetMapping()
+    public String healthCheck() {
+        return "currency-exchange - Funcionando OK";
+    }
 
 }
