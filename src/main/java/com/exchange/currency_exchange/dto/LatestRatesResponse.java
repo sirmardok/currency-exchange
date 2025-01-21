@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import com.exchange.currency_exchange.utilities.Logger;
+import com.exchange.currency_exchange.utilities.Log;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -24,7 +24,7 @@ public class LatestRatesResponse implements Serializable{
     private Map<String, BigDecimal> rates;
 
     public static LatestRatesResponse from(ConvertionRates exchangeRates) {
-        Logger.info("ExchangeRates: {}", exchangeRates);
+        Log.info("ExchangeRates: {}", exchangeRates);
         return LatestRatesResponse
             .builder()
             .base(exchangeRates.getBase())

@@ -1,13 +1,19 @@
 package com.exchange.currency_exchange;
 
-import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
+import spock.lang.Specification;
 
-@SpringBootTest
-class CurrencyExchangeApplicationTests {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class CurrencyExchangeApplicationTests extends Specification {
 
-	@Test
-	void contextLoads() {
-	}
+    @Autowired
+    Environment environment;
+
+    /*def "application should start up properly"() {
+        expect:
+            environment != null
+	}*/
 
 }

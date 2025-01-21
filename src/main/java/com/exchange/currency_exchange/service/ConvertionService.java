@@ -32,7 +32,7 @@ public class ConvertionService {
         }
 
         return processConvertionService.process(
-        		ExchangeApiService.getLatest(convertionParameters.getFrom()),
+        		exchangeApiService.getLatest(convertionParameters.getFrom()),
             convertionParameters);
     }   
 

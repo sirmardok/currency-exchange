@@ -1,9 +1,13 @@
 package com.exchange.currency_exchange.dto;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import com.exchange.currency_exchange.utilities.Log;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,11 +26,11 @@ public class ConvertionResponse implements Serializable{
         Log.info("CurrencyConvertion: {}", convertion);
         return ConvertionResponse
             .builder()
-            .date(Convertion.getDate())
-            .fromAmount(Convertion.getFromAmount())
-            .from(Convertion.getFromCurrency())
-            .toAmount(Convertion.getToAmount())
-            .to(Convertion.getToCurrency())
+            .date(convertion.getDate())
+            .fromAmount(convertion.getFromAmount())
+            .from(convertion.getFromCurrency())
+            .toAmount(convertion.getToAmount())
+            .to(convertion.getToCurrency())
             .build();
     }
 

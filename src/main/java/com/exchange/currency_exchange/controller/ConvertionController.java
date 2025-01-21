@@ -21,12 +21,15 @@ import com.exchange.currency_exchange.service.ConvertionService;
 import lombok.AllArgsConstructor;
 
 
+
+
 @RestController
-@AllArgsConstructor
 @Validated
+@AllArgsConstructor
 public class ConvertionController {
 	
 	private final String validationMsg = "El tipo de moneda debe ser de tres(3) caracteres";
+	private ConvertionService convertionService;
 	
 	@Cacheable(value = "latest")
     @RequestMapping("/latest")
@@ -35,7 +38,7 @@ public class ConvertionController {
         @RequestParam(value = "base", defaultValue = "EUR") @Size(max = 3, message = validationMsg) String base) {
 
         return LatestRatesResponse.from(
-        		ConvertionService.latest(base));
+        		convertionService.latest(base));
     }
 
     @Cacheable(value = "convert")
@@ -47,7 +50,7 @@ public class ConvertionController {
         @RequestParam(value = "to") @Size(min = 3, max = 3, message = validationMsg) String toCurrency) {
 
         return ConvertionResponse.from(
-        		ConvertionService.convert(
+        		convertionService.process(
         					ConvertionParameters.builder()
                               .amount(fromAmount)
                               .from(fromCurrency)

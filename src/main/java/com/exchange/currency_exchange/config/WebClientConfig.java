@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import com.exchange.currency_exchange.adapter.CurrencyAdapter;
+import com.exchange.currency_exchange.service.ConvertionService;
 import com.exchange.currency_exchange.service.ExchangeApiService;
+import com.exchange.currency_exchange.service.ProcessConvertionService;
 
 
 @ComponentScan("com.exchange.currency_exchange")
@@ -21,20 +23,20 @@ public class WebClientConfig {
 	private String ACCESS_KEY;
 	
     @Bean
-    public ExchangeApiService exchangeRestCalls() {
+    ExchangeApiService exchangeRestCalls() {
         return new ExchangeApiService(new CurrencyAdapter(new RestTemplate()), URL_BASE, ACCESS_KEY);
     }
 
     @Bean
-    public ExchangeComputationService exchangeService() {
-        return new ExchangeComputationService();
+    ProcessConvertionService ConvertionService() {
+        return new ProcessConvertionService();
     }
 
     @Bean
-    public ExchangeService exchangeFacadeService() {
-        return new ExchangeService();
+    ConvertionService ConvertionFacadeService() {
+        return new ConvertionService();
     }
 
 	}
 	
-}
+
